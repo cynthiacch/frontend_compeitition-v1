@@ -305,7 +305,7 @@
 
   function getAccounts()    { return JSON.parse(localStorage.getItem('tf_accounts')||'[]'); }
   function saveAccounts(a)  { localStorage.setItem('tf_accounts',JSON.stringify(a)); }
-  function getAssignments() { return JSON.parse(localStorage.getItem('tf_assignments')||'[]'); }
+  function getAssignments() { return JSON.parse(localStorage.getItem('tf_assignment')||'[]'); }
 
   
   function getSubmissions() { return JSON.parse(localStorage.getItem('tf_submisions')||'[]'); }
@@ -381,7 +381,7 @@
   function confirmSubmit(){
     if(!pendingSubmitId) return;
     const subs=getSubmissions();
-    subs.push({ taskId:pendingSubmitId, studentName:STUDENT_NAME, note:document.getElementById('submit-note').value.trim(), submittedAt:new Date().toISOString() });
+    subs.push({ taskId:String(pendingSubmitId), studentName:STUDENT_NAME, note:document.getElementById('submit-note').value.trim(), submittedAt:new Date().toISOString() });
     saveSubmissions(subs);
     closeSubmitModal();
     renderAll();

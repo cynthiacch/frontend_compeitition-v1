@@ -268,6 +268,9 @@
   
   
   function getSubmissions() { return JSON.parse(localStorage.getItem('tf_submissions')||'[]'); }
+  function displayStudentName(name) {
+    return name.split(' ').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join(' ');
+  }
 
   document.getElementById('sidebar-toggle')?.addEventListener('click',()=>{
     document.querySelector('.sidebar').classList.toggle('open');
@@ -337,8 +340,9 @@
     students.forEach(s => {
       const div = document.createElement('div');
       div.className = 'student-check-item';
-      div.innerHTML = `<input type="checkbox" id="sc-${s.email}" value="${s.name}" />
-        <label for="sc-${s.email}">${s.name} <span style="color:#555;font-size:.75rem;">(${s.email})</span></label>`;
+      const displayName = displayStudentName(s.name);
+      div.innerHTML = `<input type="checkbox" id="sc-${s.email}" value="${displayName}" />
+        <label for="sc-${s.email}">${displayName} <span style="color:#555;font-size:.75rem;">(${s.email})</span></label>`;
       list.appendChild(div);
     });
     document.getElementById('check-all').checked = false;
@@ -416,7 +420,7 @@
       return;
     }
     tbody.innerHTML = assignments.map(a=>{
-      const subs = submissions.filter(s=>s.taskId==a.id);
+      const subs = submissions.filter(s=>s.taskId===a.id);
       const isSubmitted = subs.length>0;
       const today = new Date().toISOString().split('T')[0];
 
@@ -442,7 +446,7 @@
   }
 
   function toggleDetail(id) {
-    const submissions = getSubmissions().filter(s=>s.taskId==id);
+    const submissions = getSubmissions().filter(s=>s.taskId===id);
     const assignment  = getAssignments().find(a=>a.id==id);
     const panel = document.getElementById('detail-panel');
     if (activeDetailId===id) { panel.classList.remove('open'); activeDetailId=null; return; }
@@ -467,7 +471,7 @@
     if (!submissions.length) { tbody.innerHTML=`<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:2rem;">No submissions yet.</td></tr>`; return; }
     const sorted=[...submissions].sort((a,b)=>new Date(b.submittedAt)-new Date(a.submittedAt));
     tbody.innerHTML=sorted.map(s=>{
-      const task=assignments.find(a=>a.id==s.taskId);
+      const task=assignments.find(a=>a.id===s.taskId);
       const dot={high:'🔴',medium:'🟡',low:'🟢'}[task?.priority]||'';
       const time=new Date(s.submittedAt).toLocaleString('en-AU',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
       return `<tr><td style="font-weight:600;">${s.studentName}</td><td>${task?.title||'—'}</td><td>${dot} ${task?.priority||'—'}</td><td>${time}</td><td style="color:var(--text-muted);font-size:.85rem;">${s.note||'—'}</td></tr>`;
@@ -477,7 +481,7 @@
   function renderStats() {
     const a=getAssignments().filter(a=>a.createdBy===user.email), s=getSubmissions();
     const total=a.length, submitted=s.length, pending=Math.max(0,total-submitted);
-    const rate=total?Math.round((submitted/total)*100):0;
+    const rate=total?Math.round((pending/total)*100):0;
     document.getElementById('stat-total').textContent=total;
     document.getElementById('stat-submitted').textContent=submitted;
     document.getElementById('stat-pending').textContent=pending;
