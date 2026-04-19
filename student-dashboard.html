@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TaskFlow – Student Dashboard</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/style" />
+  <link rel="stylesheet" href="css/pages" />
   <style>
     .role-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.25);border-radius:20px;font-size:.72rem;font-weight:600;padding:.2rem .7rem;letter-spacing:.04em;text-transform:uppercase}
     .badge{display:inline-block;padding:.2rem .6rem;border-radius:20px;font-size:.72rem;font-weight:600}
@@ -114,11 +114,11 @@
     </div>
     <div class="sidebar-section">
       <div class="sidebar-section-label">Student Menu</div>
-      <a href="student-dashboard" class="nav-item active"><span class="nav-icon">🏠</span> Dashboard</a>
-      <a href="#" class="nav-item" onclick="showTab('assigned');return false;"><span class="nav-icon">📋</span> Assigned Tasks<span class="nav-badge" id="sidebar-task-count">0</span></a>
-      <a href="#" class="nav-item" onclick="showTab('schedule');return false;"><span class="nav-icon">📅</span> My Schedule</a>
-      <a href="#" class="nav-item" onclick="showTab('own');return false;"><span class="nav-icon">✅</span> My Tasks</a>
-      <a href="settings.html" class="nav-item" onclick="showTab('settings');return false;"><span class="nav-icon">⚙️</span> Settings</a>
+      <a class="nav-item active"><span class="nav-icon">🏠</span> Dashboard</a>
+      <a class="nav-item"><span class="nav-icon">📋</span> Assigned Tasks<span class="nav-badge" id="sidebar-task-count">0</span></a>
+      <a class="nav-item"><span class="nav-icon">📅</span> My Schedule</a>
+      <a class="nav-item"><span class="nav-icon">✅</span> My Tasks</a>
+      <a class="nav-item"><span class="nav-icon">⚙️</span> Settings</a>
     </div>
     <div class="sidebar-footer">
       <div class="user-card">
@@ -133,11 +133,11 @@
 
   <div class="content">
     <header class="topbar">
-      <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+      <button class="sidebar-toggle" type="button">☰</button>
       <h1 class="topbar-title">Student Dashboard</h1>
       <div class="topbar-actions topbar-meta">
         <span class="role-badge">🎓 Student</span>
-        <button class="signout-btn" onclick="signOut()">Sign out</button>
+        <button class="signout-btn" type="button">Sign out</button>
       </div>
     </header>
 
@@ -150,10 +150,10 @@
       </div>
 
       <div class="tab-bar">
-        <div class="tab active" id="tab-assigned" onclick="showTab('assigned')">Assigned Tasks</div>
-        <div class="tab" id="tab-schedule"  onclick="showTab('schedule')">My Schedule</div>
-        <div class="tab" id="tab-own"       onclick="showTab('own')">My Tasks</div>
-        <div class="tab" id="tab-settings"  onclick="showTab('settings')">⚙️ Settings</div>
+        <div class="tab active" id="tab-assigned">Assigned Tasks</div>
+        <div class="tab" id="tab-schedule">My Schedule</div>
+        <div class="tab" id="tab-own">My Tasks</div>
+        <div class="tab" id="tab-settings">⚙️ Settings</div>
       </div>
 
       <div id="panel-assigned"><div id="assigned-list"></div></div>
@@ -170,9 +170,9 @@
             </div>
           </div>
           <div class="cal-nav">
-            <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
-            <button class="cal-nav-btn" onclick="goToday()">Today</button>
-            <button class="cal-nav-btn" onclick="changeMonth(1)">›</button>
+            <button class="cal-nav-btn" type="button">‹</button>
+            <button class="cal-nav-btn" type="button">Today</button>
+            <button class="cal-nav-btn" type="button">›</button>
           </div>
         </div>
         <div class="cal-grid-wrap"><div class="cal-grid" id="cal-grid"></div></div>
@@ -182,7 +182,7 @@
             <input type="text" id="sc-title" class="form-control" placeholder="Event title" style="flex:2;min-width:140px;" />
             <input type="datetime-local" id="sc-time" class="form-control" style="flex:2;min-width:180px;" />
             <input type="text" id="sc-notes" class="form-control" placeholder="Notes (optional)" style="flex:2;min-width:140px;" />
-            <button class="btn" style="background:#a855f7;color:#fff;flex-shrink:0;" onclick="saveScheduleEven()">+ Add</button>
+            <button class="btn" style="background:#a855f7;color:#fff;flex-shrink:0;" type="button">+ Add</button>
           </div>
           <div id="sc-error" style="color:#f87171;font-size:.8rem;margin-top:.4rem;display:none;"></div>
         </div>
@@ -190,7 +190,7 @@
 
       <div id="panel-own" style="display:none;">
         <div style="display:flex;justify-content:flex-end;margin-bottom:1rem;">
-          <button class="btn btn-primary-green" onclick="openOwnTaskModal()">+ Add Task</button>
+          <button class="btn btn-primary-green" type="button">+ Add Task</button>
         </div>
         <div id="own-list"></div>
       </div>
@@ -198,10 +198,10 @@
       <div id="panel-settings" style="display:none;">
         <div class="settings-layout">
           <nav class="settings-nav">
-            <div class="settings-nav-item active" onclick="showSettingsTab('profile')">👤 Profile</div>
-            <div class="settings-nav-item" onclick="showSettingsTab('notifications')">🔔 Notifications</div>
-            <div class="settings-nav-item" onclick="showSettingsTab('appearance')">🎨 Appearance</div>
-            <div class="settings-nav-item" onclick="showSettingsTab('data')">🗄️ Data</div>
+            <div class="settings-nav-item active">👤 Profile</div>
+            <div class="settings-nav-item">🔔 Notifications</div>
+            <div class="settings-nav-item">🎨 Appearance</div>
+            <div class="settings-nav-item">🗄️ Data</div>
           </nav>
           <div>
             <div class="settings-panel" id="sp-profile">
@@ -211,7 +211,7 @@
                   <div class="form-group" style="margin:0;"><label class="form-label">Display Name</label><input type="text" class="form-control" id="s-name" /></div>
                   <div class="form-group" style="margin:0;"><label class="form-label">Email</label><input type="email" class="form-control" id="s-email" /></div>
                   <div class="form-group" style="margin:0;"><label class="form-label">New Password</label><input type="password" class="form-control" id="s-pass" placeholder="Leave blank to keep current" /></div>
-                  <div><button class="btn btn-primary-green" onclick="saveSettings()">Save Changes</button></div>
+                  <div><button class="btn btn-primary-green" type="button">Save Changes</button></div>
                 </div>
               </div>
             </div>
@@ -243,7 +243,7 @@
               <div class="settings-card danger-zone">
                 <div class="settings-card-header"><div class="settings-card-title" style="color:#f87171;">⚠️ Danger Zone</div></div>
                 <div class="settings-card-body">
-                  <div class="settings-row"><div><div class="settings-row-label">Delete my personal tasks</div><div class="settings-row-sub">Permanently removes all your personal tasks.</div></div><button class="btn btn-danger" onclick="clearMyTasks()">Delete All</button></div>
+                  <div class="settings-row"><div><div class="settings-row-label">Delete my personal tasks</div><div class="settings-row-sub">Permanently removes all your personal tasks.</div></div><button class="btn btn-danger" type="button">Delete All</button></div>
                 </div>
               </div>
             </div>
@@ -254,18 +254,18 @@
   </div>
 </div>
 
-<div class="overlay" id="submit-overlay" onclick="closeSubmitModal()"></div>
+<div class="overlay" id="submit-overlay"></div>
 <div class="modal" id="submit-modal">
   <div class="modal-title">Submit Task</div>
   <p style="color:#888;font-size:.85rem;margin-bottom:1.25rem;" id="submit-task-name"></p>
   <div class="form-group"><label class="form-label">Note (optional)</label><textarea id="submit-note" class="form-control" placeholder="Any comments for your teacher…"></textarea></div>
   <div class="modal-footer">
-    <button class="btn btn-ghost" onclick="closeSubmitModal()">Cancel</button>
-    <button class="btn btn-primary-green" onclick="confirmSubmit()">Submit ✓</button>
+    <button class="btn btn-ghost" type="button">Cancel</button>
+    <button class="btn btn-primary-green" type="button">Submit ✓</button>
   </div>
 </div>
 
-<div class="overlay" id="own-overlay" onclick="closeOwnTaskModal()"></div>
+<div class="overlay" id="own-overlay"></div>
 <div class="modal" id="own-modal">
   <div class="modal-title">Add My Task</div>
   <div class="form-group"><label class="form-label">Title *</label><input type="text" id="ot-title" class="form-control" placeholder="Task title" /></div>
@@ -276,13 +276,13 @@
   <div class="form-group"><label class="form-label">Due Date</label><input type="date" id="ot-date" class="form-control" /></div>
   <div id="ot-error" style="color:#f87171;font-size:.82rem;display:none;margin-bottom:.5rem;"></div>
   <div class="modal-footer">
-    <button class="btn btn-ghost" onclick="closeOwnTaskModal()">Cancel</button>
-    <button class="btn btn-primary-green" onclick="saveOwnTask()">Add Task</button>
+    <button class="btn btn-ghost" type="button">Cancel</button>
+    <button class="btn btn-primary-green" type="button">Add Task</button>
   </div>
 </div>
 
 <div class="cal-popup" id="cal-popup">
-  <button class="cal-popup-close" onclick="closePopup()">✕</button>
+  <button class="cal-popup-close" type="button">✕</button>
   <div class="cal-popup-title" id="popup-title"></div>
   <div class="cal-popup-row" id="popup-type"></div>
   <div class="cal-popup-row" id="popup-due"></div>
@@ -316,7 +316,7 @@
   function getOwnTasks()    { return JSON.parse(localStorage.getItem('tf_own_'+STUDENT_NAME)||'[]'); }
   function saveOwnTasks(a)  { localStorage.setItem('tf_own_'+STUDENT_NAME,JSON.stringify(a)); }
 
-  document.getElementById('sidebar-toggle').addEventListener('click',()=>{
+  document.getElementById('sidebar-toggle')?.addEventListener('click',()=>{
     document.querySelector('.sidebar').classList.toggle('open');
     document.getElementById('sidebar-overlay').classList.toggle('open');
   });
@@ -369,7 +369,7 @@
         </div>
         <div style="flex-shrink:0;">
           <span class="badge ${bc}" style="display:block;margin-bottom:.5rem;">${bt}</span>
-          ${!sub?`<button class="btn-submit" onclick="openSubmitModal('${a.id}','${a.title.replace(/'/g,"\\'")}')">Submit ✓</button>`:''}
+          ${!sub?`<button class="btn-submit" type="button">Submit ✓</button>`:''}
         </div>
       </div>`;
     }).join('');
@@ -414,7 +414,7 @@
     function cell(dayNum,dateS,other){
       let cls='cal-cell'+(other?' other-month':'');
       const evs=(byDate[dateS]||[]);
-      const evHtml=evs.slice(0,3).map(ev=>`<div class="cal-event ${ev.cls}" onclick="showPopup(event,'${encodeURIComponent(JSON.stringify(ev))}')" title="${ev.label}">${ev.label}</div>`).join('')+(evs.length>3?`<div style="font-size:.65rem;color:#555;padding:.1rem .2rem;">+${evs.length-3} more</div>`:'');
+      const evHtml=evs.slice(0,3).map(ev=>`<div class="cal-event ${ev.cls}" title="${ev.label}">${ev.label}</div>`).join('')+(evs.length>3?`<div style="font-size:.65rem;color:#555;padding:.1rem .2rem;">+${evs.length-3} more</div>`:'');
       return `<div class="${cls}"><div class="cal-day-num">${dayNum}</div>${evHtml}</div>`;
     }
     for(let i=0;i<firstDay;i++){ const d=new Date(calYear,calMonth,-firstDay+i+1); html+=cell(d.getDate(),ds(d),true); }
@@ -442,7 +442,7 @@
     showToast('Event added!');
   }
 
-  function renderOwnTasks(){ const tasks=getOwnTasks(), el=document.getElementById('own-list'); if(!tasks.length){ el.innerHTML=`<div class="empty-state"><div style="font-size:2rem;margin-bottom:.5rem;">✅</div>No personal tasks yet.</div>`; return; } el.innerHTML=tasks.map(t=>{ const dot={high:'🔴',medium:'🟡',low:'🟢'}[t.priority]||'', due=t.dueDate?new Date(t.dueDate+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short'}):''; return `<div class="task-card"><div class="task-card-left"><div class="task-card-title" style="${t.done?'text-decoration:line-through;opacity:.5;':''}">${t.title}</div>${t.desc?`<div class="task-card-desc">${t.desc}</div>`:''}<div class="task-card-meta"><span class="badge badge-own">Personal</span>${dot} ${t.priority}${due?`<span>📅 ${due}</span>`:''}</div></div><div style="display:flex;flex-direction:column;gap:.4rem;flex-shrink:0;"><button class="btn btn-ghost btn-sm" onclick="toggleOwnTask('${t.id}')">${t.done?'↩ Undo':'✓ Done'}</button><button class="btn btn-ghost btn-sm" onclick="deleteOwnTask('${t.id}')">🗑</button></div></div>`; }).join(''); }
+  function renderOwnTasks(){ const tasks=getOwnTasks(), el=document.getElementById('own-list'); if(!tasks.length){ el.innerHTML=`<div class="empty-state"><div style="font-size:2rem;margin-bottom:.5rem;">✅</div>No personal tasks yet.</div>`; return; } el.innerHTML=tasks.map(t=>{ const dot={high:'🔴',medium:'🟡',low:'🟢'}[t.priority]||'', due=t.dueDate?new Date(t.dueDate+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short'}):''; return `<div class="task-card"><div class="task-card-left"><div class="task-card-title" style="${t.done?'text-decoration:line-through;opacity:.5;':''}">${t.title}</div>${t.desc?`<div class="task-card-desc">${t.desc}</div>`:''}<div class="task-card-meta"><span class="badge badge-own">Personal</span>${dot} ${t.priority}${due?`<span>📅 ${due}</span>`:''}</div></div><div style="display:flex;flex-direction:column;gap:.4rem;flex-shrink:0;"><button class="btn btn-ghost btn-sm" type="button">${t.done?'↩ Undo':'✓ Done'}</button><button class="btn btn-ghost btn-sm" type="button">🗑</button></div></div>`; }).join(''); }
   function openOwnTaskModal(){ document.getElementById('ot-error').style.display='none'; ['ot-title','ot-desc','ot-date'].forEach(id=>document.getElementById(id).value=''); document.getElementById('ot-priority').value='medium'; document.getElementById('own-overlay').classList.add('open'); document.getElementById('own-modal').classList.add('open'); }
   function closeOwnTaskModal(){ document.getElementById('own-overlay').classList.remove('open'); document.getElementById('own-modal').classList.remove('open'); }
   function saveOwnTask(){ const title=document.getElementById('ot-title').value.trim(), err=document.getElementById('ot-error'); if(!title){ err.textContent='Title is required.'; err.style.display='block'; return; } err.style.display='none'; const tasks=getOwnTasks(); tasks.push({ id:Date.now(), title, desc:document.getElementById('ot-desc').value.trim(), priority:document.getElementById('ot-priority').value, dueDate:document.getElementById('ot-date').value, done:false, createdAt:new Date().toISOString() }); saveOwnTasks(tasks); closeOwnTaskModal(); renderOwnTasks(); renderStats(); showToast('Task added!'); }
@@ -499,6 +499,6 @@
   function showToast(msg){ const t=document.createElement('div'); t.className='toast show'; t.textContent=msg; document.querySelector('.toast-container').appendChild(t); setTimeout(()=>t.remove(),3000); }
   function renderAll(){ renderStats(); renderAssigned(); }
   renderAll();
-</script>
+  </script>
 </body>
 </html>

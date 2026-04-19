@@ -16,17 +16,17 @@
     </div>
     <div class="sidebar-section">
       <div class="sidebar-section-label">Menu</div>
-      <a href="index" class="nav-item">
+      <a class="nav-item">
         <span class="nav-icon">🏠</span> Dashboard
       </a>
-      <a href="tasks" class="nav-item active">
+      <a class="nav-item active">
         <span class="nav-icon">✅</span> Tasks
         <span class="nav-badge" id="sidebar-task-count">0</span>
       </a>
-      <a href="archive" class="nav-item">
+      <a class="nav-item">
         <span class="nav-icon">📦</span> Archive
       </a>
-      <a href="settings" class="nav-item">
+      <a class="nav-item">
         <span class="nav-icon">⚙️</span> Settings
       </a>
     </div>
@@ -45,7 +45,7 @@
     <header class="topbar">
       <h1 class="topbar-title">Task Board</h1>
       <div class="topbar-actions">
-        <button class="btn btn-primary" id="btn-new-task">+ New Task</button>
+        <button class="btn btn-primary" type="button">+ New Task</button>
       </div>
     </header>
 
@@ -53,9 +53,9 @@
       <div class="tasks-controls">
         <input type="text" id="task-search" class="search-box" placeholder="Search tasks…" />
         <div class="filter-group">
-          <button class="filter-pill active" data-filter="all">All</button>
-          <button class="filter-pill" data-filter="pending">Pending</button>
-          <button class="filter-pill" data-filter="done">Done</button>
+          <button class="filter-pill-static active" type="button" data-filter="all">All</button>
+          <button class="filter-pill-static" type="button" data-filter="pending">Pending</button>
+          <button class="filter-pill-static" type="button" data-filter="done">Done</button>
         </div>
       </div>
 
@@ -86,11 +86,11 @@
   </div>
 </div>
 
-<div class="overlay" id="task-overlay"></div>
+<div class="overlay"></div>
 <div class="modal" id="task-modal">
   <div class="modal-header">
     <h2 class="modal-title">New Task</h2>
-    <button class="modal-close" id="modal-cancel">✕</button>
+    <button class="modal-close" type="button">✕</button>
   </div>
   <div class="form-group">
     <label class="form-label">Title <span class="req">*</span></label>
@@ -114,8 +114,8 @@
     <input type="date" id="f-date" class="form-control" />
   </div>
   <div class="modal-footer">
-    <button class="btn btn-ghost" id="modal-cancel-2">Cancel</button>
-    <button class="btn btn-primary" id="save-task">Add Task</button>
+    <button class="btn btn-ghost" type="button">Cancel</button>
+    <button class="btn btn-primary" type="button">Add Task</button>
   </div>
 </div>
 

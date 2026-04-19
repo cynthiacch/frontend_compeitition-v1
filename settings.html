@@ -16,17 +16,17 @@
     </div>
     <div class="sidebar-section">
       <div class="sidebar-section-label">Menu</div>
-      <a href="index" class="nav-item">
+      <a class="nav-item">
         <span class="nav-icon">🏠</span> Dashboard
       </a>
-      <a href="tasks" class="nav-item">
+      <a class="nav-item">
         <span class="nav-icon">✅</span> Tasks
         <span class="nav-badge" id="sidebar-task-count">0</span>
       </a>
-      <a href="archive" class="nav-item">
+      <a class="nav-item">
         <span class="nav-icon">📦</span> Archive
       </a>
-      <a href="settings" class="nav-item active">
+      <a class="nav-item active">
         <span class="nav-icon">⚙️</span> Settings
       </a>
     </div>
@@ -46,7 +46,7 @@
       <h1 class="topbar-title">Settings</h1>
     </header>
 
-    <main class="page-body" id="settings-root">
+    <main class="page-body">
       <div class="settings-layout">
 
         <nav class="settings-nav">
@@ -73,7 +73,7 @@
                   <label class="form-label">Role</label>
                   <input type="text" class="form-control" value="Developer" />
                 </div>
-                <div><button class="btn btn-primary" id="btn-save-profile">Save Changes</button></div>
+                <div><button class="btn btn-primary" type="button">Save Changes</button></div>
               </div>
             </div>
           </div>
@@ -128,7 +128,7 @@
               <div class="settings-card-body">
                 <div class="settings-row">
                   <div><div class="settings-row-label">Delete all tasks</div><div class="settings-row-sub">Permanently removes every task. Cannot be undone.</div></div>
-                  <button class="btn btn-danger" id="btn-clear-tasks">Delete All</button>
+                  <button class="btn btn-danger" type="button">Delete All</button>
                 </div>
               </div>
             </div>

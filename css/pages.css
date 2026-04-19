@@ -137,7 +137,8 @@
   gap: 0.4rem;
 }
 
-.filter-pill {
+.filter-pill,
+.filter-pill-static {
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--text-muted);
@@ -149,8 +150,10 @@
   transition: all 0.15s;
 }
 
-.filter-pill:hover  { border-color: var(--accent); color: var(--text); }
-.filter-pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.filter-pill:hover,
+.filter-pill-static:hover  { border-color: var(--accent); color: var(--text); }
+.filter-pill.active,
+.filter-pill-static.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 
 .board {

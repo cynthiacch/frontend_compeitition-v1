@@ -133,10 +133,6 @@
       </div>
     `;
 
-    card.querySelectorAll('[data-action]').forEach(btn => {
-      btn.addEventListener('click', () => handleCardAction(btn.dataset.action, Number(btn.dataset.id)));
-    });
-
     return card;
   }
 
@@ -261,13 +257,6 @@
       </tr>
     `).join('');
 
-    tbody.querySelectorAll('[data-id]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tasks = loadTasks();
-        const t = tasks.find(x => x.id === Number(btn.dataset.id));
-        if (t) { t.archived = false; saveTasks(tasks); renderArchive(); showToast('↩ Task restored!'); }
-      });
-    });
   }
 
   renderArchive();

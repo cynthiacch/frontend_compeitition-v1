@@ -51,16 +51,16 @@
   </div>
   <div class="card">
     <div class="mode-toggle">
-      <div class="mode-btn active" id="btn-signin" onclick="setMode('signin')">Sign In</div>
-      <div class="mode-btn"        id="btn-signup" onclick="setMode('signup')">Sign Up</div>
+      <div class="mode-btn active" id="btn-signin">Sign In</div>
+      <div class="mode-btn"        id="btn-signup">Sign Up</div>
     </div>
     <div class="role-grid">
-      <button class="role-btn active" data-role="teacher" onclick="selectRole('teacher')">
+      <button class="role-btn active" data-role="teacher" type="button">
         <span class="role-icon">👩‍🏫</span>
         <div class="role-label">Teacher</div>
         <div class="role-desc">Assign &amp; track tasks</div>
       </button>
-      <button class="role-btn" data-role="student" onclick="selectRole('student')">
+      <button class="role-btn" data-role="student" type="button">
         <span class="role-icon">🎓</span>
         <div class="role-label">Student</div>
         <div class="role-desc">View &amp; submit work</div>
@@ -89,7 +89,7 @@
       <label class="fl">Confirm Password</label>
       <input class="fc" type="password" id="f-confirm" placeholder="••••••••" />
     </div>
-    <button class="btn-main blue" id="submit-btn" onclick="handleSubmit()">Sign In →</button>
+    <button class="btn-main blue" id="submit-btn" type="button">Sign In →</button>
   </div>
 </div>
 <script>
