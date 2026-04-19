@@ -141,10 +141,10 @@
     const acc   = getAccounts().find(a => a.email.toLowerCase()===email && a.password===pass && a.role===role);
     if (!acc) { showErr('Invalid email, password, or role. Please try again.'); return; }
 
-    // This causes teacher-dashboard.html auth guard (which checks role !== "teacher") to always redirect back to login
+    
     const sessionRole = acc.role === 'teacher' ? 'educator' : acc.role;
     localStorage.setItem('tf_user', JSON.stringify({ role: sessionRole, name: acc.name, email: acc.email }));
-    window.location.href = acc.role==='teacher' ? 'teacher-dashboard.html' : 'student-dashboard.html';
+    window.location.href = acc.role==='teacher' ? 'teacher-dashboard' : 'student-dashboard';
   }
 
   function doSignUp() {
@@ -170,7 +170,7 @@
   document.addEventListener('keydown', e => { if(e.key==='Enter') handleSubmit(); });
 
   const u = JSON.parse(localStorage.getItem('tf_user')||'null');
-  if (u) window.location.href = u.role==='teacher' ? 'teacher-dashboard.html' : 'student-dashboard.html';
+  if (u) window.location.href = u.role==='teacher' ? 'teacher-dashboard' : 'student-dashboard';
 </script>
 </body>
 </html>

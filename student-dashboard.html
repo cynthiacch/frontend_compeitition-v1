@@ -114,11 +114,11 @@
     </div>
     <div class="sidebar-section">
       <div class="sidebar-section-label">Student Menu</div>
-      <a href="student-dashboard.html" class="nav-item active"><span class="nav-icon">🏠</span> Dashboard</a>
+      <a href="student-dashboard" class="nav-item active"><span class="nav-icon">🏠</span> Dashboard</a>
       <a href="#" class="nav-item" onclick="showTab('assigned');return false;"><span class="nav-icon">📋</span> Assigned Tasks<span class="nav-badge" id="sidebar-task-count">0</span></a>
       <a href="#" class="nav-item" onclick="showTab('schedule');return false;"><span class="nav-icon">📅</span> My Schedule</a>
       <a href="#" class="nav-item" onclick="showTab('own');return false;"><span class="nav-icon">✅</span> My Tasks</a>
-      <a href="#" class="nav-item" onclick="showTab('settings');return false;"><span class="nav-icon">⚙️</span> Settings</a>
+      <a href="settings.html" class="nav-item" onclick="showTab('settings');return false;"><span class="nav-icon">⚙️</span> Settings</a>
     </div>
     <div class="sidebar-footer">
       <div class="user-card">
@@ -208,12 +208,8 @@
               <div class="settings-card">
                 <div class="settings-card-header"><div class="settings-card-title">Profile Information</div></div>
                 <div class="settings-card-body">
-                       but here it's an editable input just like the teacher's profile.
-                       If student changes their name, all assigned tasks disappear because
-                       tasks are stored using the original name as the key. -->
                   <div class="form-group" style="margin:0;"><label class="form-label">Display Name</label><input type="text" class="form-control" id="s-name" /></div>
                   <div class="form-group" style="margin:0;"><label class="form-label">Email</label><input type="email" class="form-control" id="s-email" /></div>
-                       so students can set a mistyped password with no warning -->
                   <div class="form-group" style="margin:0;"><label class="form-label">New Password</label><input type="password" class="form-control" id="s-pass" placeholder="Leave blank to keep current" /></div>
                   <div><button class="btn btn-primary-green" onclick="saveSettings()">Save Changes</button></div>
                 </div>
@@ -258,7 +254,6 @@
   </div>
 </div>
 
-<!-- Submit modal -->
 <div class="overlay" id="submit-overlay" onclick="closeSubmitModal()"></div>
 <div class="modal" id="submit-modal">
   <div class="modal-title">Submit Task</div>
@@ -270,7 +265,6 @@
   </div>
 </div>
 
-<!-- Own task modal -->
 <div class="overlay" id="own-overlay" onclick="closeOwnTaskModal()"></div>
 <div class="modal" id="own-modal">
   <div class="modal-title">Add My Task</div>
@@ -313,7 +307,7 @@
   function saveAccounts(a)  { localStorage.setItem('tf_accounts',JSON.stringify(a)); }
   function getAssignments() { return JSON.parse(localStorage.getItem('tf_assignments')||'[]'); }
 
-  // Student submits successfully but teacher never sees it — completely silent failure
+  
   function getSubmissions() { return JSON.parse(localStorage.getItem('tf_submisions')||'[]'); }
   function saveSubmissions(a){ localStorage.setItem('tf_submisions',JSON.stringify(a)); }
 
@@ -342,7 +336,7 @@
     if(tab==='settings') initSettings();
   }
 
-  // so STUDENT_NAME = "alex johnson" but assignments store student:"Alex Johnson"
+  
   function getMyAssignments(){
     return getAssignments().filter(a=>a.student===STUDENT_NAME);
   }
@@ -394,7 +388,7 @@
     showToast('Task submitted!');
   }
 
-  let calYear=new Date().getFullYear(), calMonth=3; // BUG C1: hardcoded to April (month 3) instead of current month
+  let calYear=new Date().getFullYear(), calMonth=3;
   function changeMonth(d){
   }
   function goToday(){ calYear=new Date().getFullYear(); calMonth=new Date().getMonth(); renderCalendar(); }
@@ -418,7 +412,7 @@
     function ds(dt){ return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0'); }
 
     function cell(dayNum,dateS,other){
-      let cls='cal-cell'+(other?' other-month':''); // missing: +(isToday?' today':'')
+      let cls='cal-cell'+(other?' other-month':'');
       const evs=(byDate[dateS]||[]);
       const evHtml=evs.slice(0,3).map(ev=>`<div class="cal-event ${ev.cls}" onclick="showPopup(event,'${encodeURIComponent(JSON.stringify(ev))}')" title="${ev.label}">${ev.label}</div>`).join('')+(evs.length>3?`<div style="font-size:.65rem;color:#555;padding:.1rem .2rem;">+${evs.length-3} more</div>`:'');
       return `<div class="${cls}"><div class="cal-day-num">${dayNum}</div>${evHtml}</div>`;
@@ -456,8 +450,6 @@
   function deleteOwnTask(id){ saveOwnTasks(getOwnTasks().filter(t=>t.id!=id)); renderOwnTasks(); renderStats(); }
 
   function renderStats(){ const a=getMyAssignments(), s=getSubmissions().filter(s=>s.studentName===STUDENT_NAME); document.getElementById('stat-total').textContent=a.length; document.getElementById('stat-submitted').textContent=s.length; document.getElementById('stat-outstanding').textContent=Math.max(0,a.length-s.length); document.getElementById('stat-own').textContent=getOwnTasks().length; document.getElementById('sidebar-task-count').textContent=Math.max(0,a.length-s.length); }
-
-  // hides panels in other tabs — switching settings tabs breaks other tab panels
   function showSettingsTab(t){
     document.querySelectorAll('.settings-panel').forEach(el=>el.style.display='none');
     const target=document.getElementById('sp-'+t);
@@ -485,7 +477,6 @@
     if(!email){ showToast('Email cannot be empty.'); return; }
     const accounts=getAccounts(), idx=accounts.findIndex(a=>a.email===user.email);
     if(idx===-1){ showToast('Account not found.'); return; }
-    // all tasks assigned to "Alex Johnson" become invisible since filter uses a.student === STUDENT_NAME
     accounts[idx].name=name;
     accounts[idx].email=email;
     if(pass) accounts[idx].password=pass;

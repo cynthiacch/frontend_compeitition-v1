@@ -67,7 +67,7 @@
     </div>
     <div class="sidebar-section">
       <div class="sidebar-section-label">Teacher Menu</div>
-      <a href="teacher-dashboard.html" class="nav-item active">
+      <a href="teacher-dashboard" class="nav-item active">
         <span class="nav-icon">🏠</span> Dashboard
       </a>
       <a href="#" class="nav-item" onclick="showTab('assigned');return false;">
@@ -166,7 +166,7 @@
         </div>
       </div>
 
-      <!-- Settings panel — BUG S1: nav tabs exist but onclick calls showSettingTab (missing 's') -->
+      
       <div id="panel-settings" style="display:none;">
         <div style="display:grid;grid-template-columns:180px 1fr;gap:1.5rem;">
           <nav style="display:flex;flex-direction:column;gap:.3rem;">
@@ -207,7 +207,7 @@
   </div>
 </div>
 
-<!-- Assign modal -->
+
 <div class="overlay" id="assign-overlay" onclick="closeModal()"></div>
 <div class="modal" id="assign-modal">
   <div class="modal-title">Assign New Task</div>

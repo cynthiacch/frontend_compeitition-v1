@@ -1,10 +1,6 @@
-/* =====================================================
-   TASKFLOW — Page-Specific Styles
-   ===================================================== */
 
-/* ===================================================
-   DASHBOARD (index.html)
-   =================================================== */
+
+
 
 .dashboard-grid {
   display: grid;
@@ -16,7 +12,7 @@
   .dashboard-grid { grid-template-columns: 1fr; }
 }
 
-/* Recent tasks table */
+
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -64,7 +60,7 @@
 .table tr:last-child td { border-bottom: none; }
 .table tr:hover td { background: var(--surface2); }
 
-/* Priority pill */
+
 .pill {
   display: inline-block;
   padding: 2px 10px;
@@ -78,7 +74,7 @@
 .pill-low    { background: rgba(78,204,163,0.18);  color: var(--success); }
 .pill-done   { background: rgba(122,128,168,0.15); color: var(--text-muted); }
 
-/* Activity feed */
+
 .activity-feed { padding: 0.6rem 0; }
 
 .activity-item {
@@ -110,16 +106,14 @@
 .activity-text strong { color: var(--text); font-weight: 600; }
 .activity-time { font-size: 0.72rem; color: var(--text-faint); margin-top: 2px; }
 
-/* ===================================================
-   TASKS PAGE (tasks.html)
-   =================================================== */
+
 
 .tasks-controls {
   display: flex;
   align-items: center;
   gap: 0.8rem;
   margin-bottom: 1.5rem;
-  /* FIX 10b: flex-wrap added so controls wrap gracefully on narrow screens */
+  
   flex-wrap: wrap;
 }
 
@@ -158,7 +152,7 @@
 .filter-pill:hover  { border-color: var(--accent); color: var(--text); }
 .filter-pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-/* Kanban board */
+
 .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -166,7 +160,7 @@
   align-items: start;
 }
 
-/* FIX 4: .task-col class added; column wrappers now have proper styling */
+
 .task-col {
   border-radius: var(--radius-sm);
   overflow: hidden;
@@ -221,18 +215,18 @@
   gap: 0.7rem;
 }
 
-/* Task card */
+
 .task-card {
   background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 0.9rem 1rem;
-  /* FIX 11: border-left added as base; colour set by priority modifier classes below */
+  
   border-left: 3px solid transparent;
   transition: box-shadow 0.15s, transform 0.15s;
 }
 
-/* FIX 11 (cont): priority colour applied via class set in buildCard() */
+
 .task-card.priority-high   { border-left-color: var(--danger); }
 .task-card.priority-medium { border-left-color: var(--warn); }
 .task-card.priority-low    { border-left-color: var(--success); }
@@ -248,7 +242,7 @@
   font-size: 0.88rem;
   font-weight: 600;
   margin-bottom: 0.35rem;
-  /* FIX 11b: overflow and white-space added so ellipsis actually fires */
+  
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -298,9 +292,7 @@
   .board { grid-template-columns: 1fr; }
 }
 
-/* ===================================================
-   ARCHIVE PAGE (archive.html)
-   =================================================== */
+
 
 .archive-table-wrap {
   background: var(--surface);
@@ -322,9 +314,7 @@
   padding: 0.25rem 0.65rem;
 }
 
-/* ===================================================
-   SETTINGS PAGE (settings.html)
-   =================================================== */
+
 
 .settings-layout {
   display: grid;
@@ -399,7 +389,7 @@
 .settings-row-label { font-size: 0.88rem; font-weight: 600; }
 .settings-row-sub   { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
 
-/* Toggle switch */
+
 .toggle {
   position: relative;
   width: 40px;
@@ -433,7 +423,7 @@
 .toggle input:checked + .toggle-slider { background: var(--accent); }
 .toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
 
-/* Danger zone */
+
 .danger-zone {
   border-color: rgba(249,65,68,0.35) !important;
 }

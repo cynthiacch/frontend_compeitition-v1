@@ -1,15 +1,13 @@
-/* =====================================================
-   TASKFLOW — Global Stylesheet
-   ===================================================== */
 
-/* ===== RESET ===== */
+
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* ===== DESIGN TOKENS ===== */
+
 :root {
   --bg:          #0c0e14;
   --bg2:         #11131c;
@@ -36,13 +34,13 @@
   --header-h:    60px;
 }
 
-/* ===== BASE ===== */
+
 body {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
   line-height: 1.6;
-  /* FIX 7: font-family now properly declared on body */
+  
   font-family: 'DM Sans', system-ui, sans-serif;
 }
 
@@ -50,13 +48,13 @@ a { color: inherit; text-decoration: none; }
 button { cursor: pointer; font-family: inherit; }
 input, textarea, select { font-family: inherit; }
 
-/* ===== LAYOUT SHELL ===== */
+
 .shell {
   display: flex;
   min-height: 100vh;
 }
 
-/* ===== SIDEBAR ===== */
+
 .sidebar {
   width: var(--sidebar-w);
   background: var(--surface);
@@ -68,7 +66,7 @@ input, textarea, select { font-family: inherit; }
   left: 0;
   height: 100vh;
   z-index: 50;
-  /* FIX 10: changed from "scroll" (always visible) to "auto" (only when needed) */
+  
   overflow-y: auto;
 }
 
@@ -183,7 +181,7 @@ input, textarea, select { font-family: inherit; }
 .user-name { font-size: 0.82rem; font-weight: 600; }
 .user-role { font-size: 0.72rem; color: var(--text-muted); }
 
-/* ===== MAIN CONTENT ===== */
+
 .content {
   margin-left: var(--sidebar-w);
   flex: 1;
@@ -192,14 +190,14 @@ input, textarea, select { font-family: inherit; }
   min-height: 100vh;
 }
 
-/* ===== TOP BAR ===== */
+
 .topbar {
   height: var(--header-h);
   background: var(--bg2);
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
-  /* FIX 8: padding now applied symmetrically on both sides */
+  
   padding: 0 1.8rem;
   gap: 1rem;
   position: sticky;
@@ -220,7 +218,7 @@ input, textarea, select { font-family: inherit; }
   gap: 0.6rem;
 }
 
-/* ===== BUTTONS ===== */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -262,16 +260,16 @@ input, textarea, select { font-family: inherit; }
 
 .btn-success:hover { opacity: 0.85; }
 
-/* ===== PAGE BODY ===== */
+
 .page-body {
   padding: 2rem 2.2rem;
   flex: 1;
 }
 
-/* ===== STAT CARDS ===== */
+
 .stats-grid {
   display: grid;
-  /* FIX 9: changed from fixed px widths to fluid fr units */
+  
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   margin-bottom: 2rem;
@@ -320,7 +318,7 @@ input, textarea, select { font-family: inherit; }
   margin-top: 0.4rem;
 }
 
-/* ===== PROGRESS BAR ===== */
+
 .progress-wrap {
   background: var(--surface3);
   border-radius: 99px;
@@ -337,7 +335,7 @@ input, textarea, select { font-family: inherit; }
   width: 0%;
 }
 
-/* ===== SECTION HEADER ===== */
+
 .section-header {
   display: flex;
   align-items: center;
@@ -351,7 +349,7 @@ input, textarea, select { font-family: inherit; }
   color: var(--text);
 }
 
-/* ===== MODAL ===== */
+
 .overlay {
   display: none;
   position: fixed;
@@ -365,7 +363,7 @@ input, textarea, select { font-family: inherit; }
   position: fixed;
   top: 50%;
   left: 50%;
-  /* FIX 12: translate on both axes to properly centre the modal */
+  
   transform: translate(-50%, -50%);
   background: var(--surface);
   border: 1px solid var(--border);
@@ -407,7 +405,7 @@ input, textarea, select { font-family: inherit; }
 
 .modal-close:hover { background: var(--surface3); color: var(--text); }
 
-/* ===== FORM ELEMENTS ===== */
+
 .form-group { margin-bottom: 1rem; }
 
 .form-label {
@@ -449,7 +447,7 @@ textarea.form-control {
   margin-top: 1.4rem;
 }
 
-/* ===== EMPTY STATE ===== */
+
 .empty-state {
   text-align: center;
   padding: 3rem 1rem;
@@ -459,7 +457,7 @@ textarea.form-control {
 .empty-state-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
 .empty-state-text { font-size: 0.9rem; }
 
-/* ===== TOAST ===== */
+
 .toast-container {
   position: fixed;
   bottom: 1.5rem;
@@ -486,7 +484,7 @@ textarea.form-control {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== MOBILE SIDEBAR TOGGLE ===== */
+
 .sidebar-toggle {
   display: none;
   background: var(--surface2);
@@ -502,13 +500,13 @@ textarea.form-control {
   flex-shrink: 0;
 }
 
-/* ===== RESPONSIVE ===== */
+
 @media (max-width: 900px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
-  /* FIX 13: sidebar slides in/out via JS toggle rather than being removed */
+  
   .sidebar {
     transform: translateX(-100%);
     transition: transform 0.25s ease;

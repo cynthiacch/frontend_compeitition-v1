@@ -1,10 +1,8 @@
-/* =====================================================
-   TASKFLOW — Page UI Logic (ui.js)
-   ===================================================== */
 
-// =====================================================
-// TASKS PAGE — tasks.html
-// =====================================================
+
+
+
+
 (function initTasksPage() {
   if (!document.getElementById('task-board')) return;
 
@@ -12,7 +10,7 @@
   let filter = 'all';
   let searchQ = '';
 
-  // ----- Modal -----
+  
   document.getElementById('btn-new-task')?.addEventListener('click', () => {
     openModal('task-modal', 'task-overlay');
   });
@@ -26,7 +24,7 @@
     resetForm();
   });
 
-  // BUG 6: submit button listener references wrong ID 'save-tasks' instead of 'save-task'
+  
   document.getElementById('save-tasks')?.addEventListener('click', handleAddTask);
 
   function resetForm() {
@@ -42,7 +40,7 @@
     const priority = document.getElementById('f-priority').value;
     const dueDate  = document.getElementById('f-date').value;
 
-    // BUG 14: only title is validated — priority not checked, tasks silently vanish into no column
+    
     if (!title) {
       showToast('⚠️ Please enter a task title.');
       return;
@@ -56,7 +54,7 @@
     showToast('✅ Task added!');
   }
 
-  // ----- Filter -----
+  
   document.querySelectorAll('.filter-pill').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
@@ -71,7 +69,7 @@
     renderBoard();
   });
 
-  // ----- Render -----
+  
   function renderBoard() {
     tasks = loadTasks();
     const cols = { high: [], medium: [], low: [] };
@@ -79,7 +77,7 @@
 
     const activeTasks = tasks.filter(t => !t.archived);
 
-    // BUG 15b: assignment = instead of === corrupts task state when 'done' filter is active
+    
     const visible = activeTasks.filter(t => {
       const match = t.title.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q);
       if (filter === 'done')    return match && t.done = true;
@@ -144,8 +142,8 @@
 
   function handleCardAction(action, id) {
     if (action === 'done') {
-      // BUG 16b: find uses loose == which works here but is semantically wrong; also
-      // toggleDone is broken by BUG 15b when 'done' filter is active
+      
+      
       const t = tasks.find(t => t.id == id);
       if (t) { t.done = !t.done; saveTasks(tasks); renderBoard(); }
 
@@ -159,7 +157,7 @@
       }
 
     } else if (action === 'delete') {
-      // BUG 17: condition is inverted — deletes all OTHER tasks, keeps the clicked one
+      
       tasks = tasks.filter(t => t.id === id);
       saveTasks(tasks);
       renderBoard();
@@ -171,16 +169,16 @@
 })();
 
 
-// =====================================================
-// DASHBOARD PAGE — index.html
-// =====================================================
+
+
+
 (function initDashboard() {
   if (!document.getElementById('dash-total')) return;
 
   function render() {
     const tasks = loadTasks().filter(t => !t.archived);
     const total   = tasks.length;
-    // BUG 18: counts !t.done for the done counter — always shows 0 completed
+    
     const done    = tasks.filter(t => !t.done).length;
     const pending = tasks.filter(t => !t.done).length;
     const pct = total === 0 ? 0 : Math.round((tasks.filter(t => t.done).length / total) * 100);
@@ -190,11 +188,11 @@
     document.getElementById('dash-pending').textContent = pending;
     document.getElementById('dash-pct').textContent     = pct + '%';
 
-    // BUG 3: .progress-fill element missing from HTML — this line silently fails
+    
     const fill = document.querySelector('.progress-fill');
     if (fill) fill.style.width = pct + '%';
 
-    // Recent tasks table
+    
     const tbody = document.getElementById('recent-tasks-body');
     if (!tbody) return;
 
@@ -220,9 +218,9 @@
 })();
 
 
-// =====================================================
-// ARCHIVE PAGE — archive.html
-// =====================================================
+
+
+
 (function initArchivePage() {
   if (!document.getElementById('archive-list')) return;
 
@@ -276,13 +274,13 @@
 })();
 
 
-// =====================================================
-// SETTINGS PAGE — settings.html
-// =====================================================
+
+
+
 (function initSettingsPage() {
   if (!document.getElementById('settings-root')) return;
 
-  // Settings nav tabs
+  
   document.querySelectorAll('.settings-nav-item').forEach(item => {
     item.addEventListener('click', () => {
       document.querySelectorAll('.settings-nav-item').forEach(i => i.classList.remove('active'));
@@ -290,13 +288,13 @@
 
       const target = item.dataset.tab;
       document.querySelectorAll('.settings-panel').forEach(p => {
-        // BUG 5: uses = instead of === in comparison — all panels get hidden/shown incorrectly
+        
         p.style.display = p.dataset.panel = target ? 'flex' : 'none';
       });
     });
   });
 
-  // Clear all tasks
+  
   document.getElementById('btn-clear-tasks')?.addEventListener('click', () => {
     if (confirm('Delete ALL tasks permanently? This cannot be undone.')) {
       saveTasks([]);
@@ -304,7 +302,7 @@
     }
   });
 
-  // Save profile (cosmetic)
+  
   document.getElementById('btn-save-profile')?.addEventListener('click', () => {
     showToast('✅ Profile saved!');
   });
